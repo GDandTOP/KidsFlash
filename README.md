@@ -72,6 +72,3 @@ flash/
 - [ ] 풍선터트리기 구현
 - [ ] 숫자세기 구현
 
-## 📝 License
-
-Private
