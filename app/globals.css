@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Jua', sans-serif;
+}
+
+/* 터치 피드백 */
+button,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 아이들용 큰 터치 영역 */
+button {
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+}
+
+/* 스크롤바 숨기기 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 선택 방지 */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ===== 배경 레이어 시스템 ===== */
+.scene-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #C9E8FD 0%,
+    #D8EEFF 20%,
+    #E6E0FF 45%,
+    #FDE8F0 65%,
+    #FFF2E0 82%,
+    #E8F5E9 100%
+  );
+}
+
+/* 부드러운 원형 보케 */
+.scene-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,202,87,0.15) 0%, transparent 70%);
+  animation: floatBlob1 20s ease-in-out infinite;
+}
+
+.scene-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(166,108,255,0.1) 0%, transparent 70%);
+  animation: floatBlob2 18s ease-in-out infinite;
+}
+
+@keyframes floatBlob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5vw, 3vh) scale(1.05); }
+  66% { transform: translate(-3vw, -2vh) scale(0.95); }
+}
+
+@keyframes floatBlob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-4vw, -3vh) scale(1.08); }
+  66% { transform: translate(3vw, 2vh) scale(0.92); }
+}
+
+/* ===== 3D 카드 프레스 효과 ===== */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-3d:active {
+  transform: translateY(4px) scale(0.97);
+  box-shadow: 0 4px 0 0 rgba(0,0,0,0.08), 0 8px 20px -4px rgba(0,0,0,0.1) !important;
+}
+
+/* ===== 카드 반짝임(shimmer) 효과 ===== */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.4) 45%,
+    rgba(255,255,255,0.7) 50%,
+    rgba(255,255,255,0.4) 55%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmerSlide 4s ease-in-out infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+@keyframes shimmerSlide {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -200% 0; }
+}
+
+/* ===== 아이콘 idle 흔들림 ===== */
+@keyframes idleBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-6px) rotate(2deg); }
+  75% { transform: translateY(2px) rotate(-1deg); }
+}
+
+.icon-bob {
+  animation: idleBob 3s ease-in-out infinite;
+}
+
+/* ===== 물결 장식 바닥 ===== */
+.wave-bottom {
+  position: relative;
+}
+
+.wave-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  border-radius: 0 0 1.5rem 1.5rem;
+  background: rgba(0,0,0,0.06);
+}
+
+/* ===== 컨페티 파티클 ===== */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+
+/* ===== 별 폭발 ===== */
+@keyframes starBurst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* ===== 글로우 링 ===== */
+@keyframes glowRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255,255,255,0.8);
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  }
+}
+
+.glow-ring {
+  animation: glowRing 3s ease-in-out infinite;
+}
+
+/* ===== 부드러운 그라데이션 텍스트 ===== */
+.text-rainbow {
+  background: linear-gradient(135deg, #FF6B8A 0%, #FF9F43 25%, #FECA57 50%, #48DBFB 75%, #A66CFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== 구름 ===== */
+.cloud {
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  box-shadow:
+    40px -10px 0 15px rgba(255,255,255,0.7),
+    -35px -5px 0 10px rgba(255,255,255,0.7),
+    25px 5px 0 20px rgba(255,255,255,0.7),
+    -20px 8px 0 8px rgba(255,255,255,0.7);
+}
+
+/* ===== 무지개 언더라인 ===== */
+.rainbow-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.rainbow-underline::after {
+  content: '';
+  position: absolute;
+  left: -5%;
+  bottom: -6px;
+  width: 110%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #FF6B8A, #FF9F43, #FECA57, #5CD85A, #48DBFB, #A66CFF);
+}
