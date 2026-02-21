@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { SvgRainbow } from '@/components/common/SvgIcons'
 
 const TITLE_LETTERS = [
   { char: '플', color: '#FF6B8A' },
@@ -79,11 +80,11 @@ export default function Logo () {
 
           {/* 무지개 아이콘 */}
           <motion.div
-            className="text-3xl sm:text-4xl text-center mb-0.5"
+            className="flex justify-center mb-0.5"
             animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           >
-            🌈
+            <SvgRainbow size={52} />
           </motion.div>
 
           {/* 타이틀 글자 */}

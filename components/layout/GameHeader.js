@@ -2,6 +2,18 @@
 
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { SvgHome, SvgStar } from '@/components/common/SvgIcons'
+import {
+  SvgPalette, SvgPuzzle, SvgNote, SvgBalloonIcon, SvgNumbers
+} from '@/components/common/SvgIcons'
+
+const ICON_MAP = {
+  '🎨': SvgPalette,
+  '🧩': SvgPuzzle,
+  '🎵': SvgNote,
+  '🎈': SvgBalloonIcon,
+  '🔢': SvgNumbers
+}
 
 const GAME_THEMES = {
   '🎨': { gradient: 'from-amber-400 to-orange-400', bg: 'bg-amber-50' },
@@ -14,6 +26,7 @@ const GAME_THEMES = {
 export default function GameHeader ({ gameIcon, gameName, stars = 0 }) {
   const router = useRouter()
   const theme = GAME_THEMES[gameIcon] || GAME_THEMES['🎨']
+  const GameIconComponent = ICON_MAP[gameIcon] || SvgPalette
 
   return (
     <motion.header
@@ -27,52 +40,50 @@ export default function GameHeader ({ gameIcon, gameName, stars = 0 }) {
         shadow-kids-card border-2 border-white/60
         flex items-center justify-between px-3 py-2.5 sm:px-5 sm:py-3
       `}>
-        {/* 홈 버튼 */}
+        {/* Home button */}
         <motion.button
           whileTap={{ scale: 0.85, rotate: -10 }}
           onClick={() => router.push('/')}
           className={`
             w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${theme.gradient}
             rounded-kids shadow-kids
-            flex items-center justify-center text-xl sm:text-2xl
+            flex items-center justify-center
           `}
         >
-          🏠
+          <SvgHome size={26} />
         </motion.button>
 
-        {/* 게임 아이콘 및 이름 */}
+        {/* Game icon + name */}
         <motion.div
           className="flex items-center gap-2"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', delay: 0.2 }}
         >
-          <motion.span
-            className="text-3xl sm:text-4xl"
+          <motion.div
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
           >
-            {gameIcon}
-          </motion.span>
+            <GameIconComponent size={34} />
+          </motion.div>
           <span className="text-kids-xs sm:text-kids-sm font-bold text-gray-700">
             {gameName}
           </span>
         </motion.div>
 
-        {/* 별 카운터 */}
+        {/* Star counter */}
         <motion.div
           className="flex items-center gap-1.5 bg-yellow-100 border-2 border-yellow-200 px-3 py-1.5 rounded-full"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', delay: 0.3 }}
         >
-          <motion.span
-            className="text-xl sm:text-2xl"
+          <motion.div
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
           >
-            ⭐
-          </motion.span>
+            <SvgStar size={22} />
+          </motion.div>
           <span className="text-kids-xs font-bold text-yellow-600 min-w-[1.5ch] text-center">
             {stars}
           </span>

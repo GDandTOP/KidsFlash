@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { SvgSunflower, SvgFlower, SvgButterfly, SvgBee, SvgBlossom } from '@/components/common/SvgIcons'
 
 function Sun () {
   return (
@@ -121,16 +122,16 @@ function TwinkleStar ({ top, left, size, delay }) {
   )
 }
 
-function SceneDecor ({ emoji, x, y, size, delay }) {
+function SceneDecor ({ children, x, y, delay, floatDuration = 4.5 }) {
   return (
     <motion.div
       className="absolute pointer-events-none select-none"
-      style={{ left: x, top: y, fontSize: size }}
+      style={{ left: x, top: y }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, y: [0, -8, 0] }}
-      transition={{ opacity: { delay, duration: 0.5 }, y: { duration: 4 + Math.random() * 2, repeat: Infinity, delay, ease: 'easeInOut' } }}
+      transition={{ opacity: { delay, duration: 0.5 }, y: { duration: floatDuration, repeat: Infinity, delay, ease: 'easeInOut' } }}
     >
-      {emoji}
+      {children}
     </motion.div>
   )
 }
@@ -161,12 +162,22 @@ export default function FloatingElements () {
       {/* 원경 산 */}
       <Mountains />
 
-      {/* 장식 이모지 (세계관) */}
-      <SceneDecor emoji="🌻" x="5%" y="72%" size={20} delay={0.3} />
-      <SceneDecor emoji="🌷" x="92%" y="75%" size={18} delay={0.7} />
-      <SceneDecor emoji="🦋" x="12%" y="40%" size={18} delay={1.2} />
-      <SceneDecor emoji="🐝" x="88%" y="35%" size={14} delay={1.8} />
-      <SceneDecor emoji="🌸" x="75%" y="68%" size={16} delay={0.5} />
+      {/* 장식 SVG (세계관) */}
+      <SceneDecor x="5%" y="72%" delay={0.3} floatDuration={4.2}>
+        <SvgSunflower size={22} />
+      </SceneDecor>
+      <SceneDecor x="91%" y="74%" delay={0.7} floatDuration={4.8}>
+        <SvgFlower size={20} />
+      </SceneDecor>
+      <SceneDecor x="11%" y="40%" delay={1.2} floatDuration={3.8}>
+        <SvgButterfly size={22} />
+      </SceneDecor>
+      <SceneDecor x="87%" y="35%" delay={1.8} floatDuration={3.2}>
+        <SvgBee size={16} />
+      </SceneDecor>
+      <SceneDecor x="74%" y="68%" delay={0.5} floatDuration={5.0}>
+        <SvgBlossom size={18} />
+      </SceneDecor>
 
       {/* 전경 언덕 */}
       <HillForeground />

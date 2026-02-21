@@ -6,13 +6,14 @@ import Logo from '@/components/home/Logo'
 import Mascot from '@/components/home/Mascot'
 import GameCard from '@/components/home/GameCard'
 import useGameStore from '@/stores/useGameStore'
+import { SvgStar, SvgGear, SvgFamily } from '@/components/common/SvgIcons'
 
 const GAMES = [
-  { id: 'color-play', title: '색칠놀이', icon: '🎨', href: '/games/color-play' },
-  { id: 'puzzle-match', title: '퍼즐맞추기', icon: '🧩', href: '/games/puzzle-match' },
-  { id: 'music-play', title: '음악놀이', icon: '🎵', href: '/games/music-play' },
-  { id: 'balloon-pop', title: '풍선터트리기', icon: '🎈', href: '/games/balloon-pop' },
-  { id: 'number-count', title: '숫자세기', icon: '🔢', href: '/games/number-count' }
+  { id: 'color-play', title: '색칠놀이', href: '/games/color-play' },
+  { id: 'puzzle-match', title: '퍼즐맞추기', href: '/games/puzzle-match' },
+  { id: 'music-play', title: '음악놀이', href: '/games/music-play' },
+  { id: 'balloon-pop', title: '풍선터트리기', href: '/games/balloon-pop' },
+  { id: 'number-count', title: '숫자세기', href: '/games/number-count' }
 ]
 
 function StarBadge ({ count }) {
@@ -24,13 +25,12 @@ function StarBadge ({ count }) {
       animate={{ scale: 1 }}
       transition={{ type: 'spring', delay: 0.8 }}
     >
-      <motion.span
-        className="text-lg"
+      <motion.div
         animate={{ rotate: [0, 360] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
       >
-        ⭐
-      </motion.span>
+        <SvgStar size={20} />
+      </motion.div>
       <span className="text-sm font-bold text-amber-600">{count}</span>
     </motion.div>
   )
@@ -44,42 +44,41 @@ export default function Home () {
       <FloatingElements />
 
       <main className="relative z-10 flex flex-col items-center min-h-screen px-5 pt-5 pb-6 sm:pt-8 overflow-y-auto">
-        {/* 상단: 별 뱃지 */}
+        {/* Star badge */}
         <div className="self-end mb-2">
           <StarBadge count={totalStars} />
         </div>
 
-        {/* 로고 */}
+        {/* Logo */}
         <div className="mb-3 sm:mb-4">
           <Logo />
         </div>
 
-        {/* 마스코트 */}
+        {/* Mascot */}
         <div className="mb-5 sm:mb-6">
           <Mascot />
         </div>
 
-        {/* 게임 카드 그리드 */}
+        {/* Game card grid */}
         <div className="grid grid-cols-2 gap-3.5 sm:gap-5 w-full max-w-md mb-3.5 sm:mb-5">
           {GAMES.slice(0, 4).map((game, i) => (
             <GameCard key={game.id} game={game} index={i} />
           ))}
         </div>
 
-        {/* 5번째 게임 (중앙 배치) */}
+        {/* 5th game centered */}
         <div className="w-full max-w-md flex justify-center mb-28">
           <div className="w-[calc(50%-0.44rem)] sm:w-[calc(50%-0.63rem)]">
             <GameCard game={GAMES[4]} index={4} />
           </div>
         </div>
 
-        {/* 하단 네비게이션 */}
+        {/* Bottom navigation */}
         <div className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none">
-          {/* 반투명 바닥 그라데이션 */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/30 to-transparent pointer-events-none" />
 
           <div className="relative flex justify-between items-end px-5 pb-5">
-            {/* 설정 */}
+            {/* Settings */}
             <motion.button
               className="pointer-events-auto relative"
               whileTap={{ scale: 0.88 }}
@@ -88,18 +87,18 @@ export default function Home () {
               transition={{ delay: 1 }}
             >
               <div
-                className="w-13 h-13 sm:w-14 sm:h-14 bg-white/85 backdrop-blur-md rounded-full flex items-center justify-center text-2xl border-2 border-white/70"
+                className="bg-white/85 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/70"
                 style={{
                   boxShadow: '0 5px 0 0 rgba(0,0,0,0.06), 0 8px 20px -4px rgba(0,0,0,0.08)',
                   width: 52,
                   height: 52
                 }}
               >
-                ⚙️
+                <SvgGear size={28} color="#6B7280" />
               </div>
             </motion.button>
 
-            {/* 부모님 */}
+            {/* Parents */}
             <motion.button
               className="pointer-events-auto relative"
               whileTap={{ scale: 0.88 }}
@@ -108,14 +107,14 @@ export default function Home () {
               transition={{ delay: 1.1 }}
             >
               <div
-                className="bg-white/85 backdrop-blur-md rounded-full flex items-center justify-center text-2xl border-2 border-white/70"
+                className="bg-white/85 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/70"
                 style={{
                   boxShadow: '0 5px 0 0 rgba(0,0,0,0.06), 0 8px 20px -4px rgba(0,0,0,0.08)',
                   width: 52,
                   height: 52
                 }}
               >
-                👨‍👩‍👧
+                <SvgFamily size={34} />
               </div>
             </motion.button>
           </div>
