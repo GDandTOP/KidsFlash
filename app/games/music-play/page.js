@@ -1049,7 +1049,7 @@ export default function MusicPlayPage () {
     <div className={`min-h-screen bg-gradient-to-b ${bgMap[instrument]} transition-all duration-500`}>
       <GameHeader gameIcon="🎵" gameName="음악놀이" stars={totalStars} />
 
-      <div className="pt-20 pb-10 px-4 flex flex-col items-center min-h-screen">
+      <div className="pt-28 pb-10 px-4 flex flex-col items-center min-h-screen">
         {/* Instrument selector */}
         <div className="flex gap-1.5 mb-4 bg-white/70 backdrop-blur-sm rounded-full p-1.5 shadow-lg border border-white/60">
           {INSTRUMENTS.map((inst) => (

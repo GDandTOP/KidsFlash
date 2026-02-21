@@ -9,7 +9,7 @@ import { PUZZLES, shuffleArray } from '@/lib/puzzleData'
 
 function DifficultySelect ({ onSelect }) {
   return (
-    <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-24 pb-8">
+    <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-28 pb-8">
       <motion.div
         className="flex flex-col items-center gap-6 w-full max-w-sm"
         initial={{ opacity: 0, y: 20 }}
@@ -146,7 +146,7 @@ export default function PuzzleMatchPage () {
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-green-50 to-teal-50">
       <GameHeader gameIcon="🧩" gameName="퍼즐맞추기" stars={totalStars} />
 
-      <div className="pt-24 pb-8 px-4 flex flex-col items-center min-h-screen">
+      <div className="pt-28 pb-8 px-4 flex flex-col items-center min-h-screen">
         {/* 퍼즐 이름 */}
         <motion.div
           className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-2 rounded-full shadow-kids border-2 border-white/60 mb-4"

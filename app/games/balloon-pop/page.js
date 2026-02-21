@@ -64,7 +64,7 @@ function createBalloon (areaWidth) {
 
 function ModeSelect ({ onSelect }) {
   return (
-    <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-24 pb-8">
+    <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-28 pb-8">
       <motion.div
         className="flex flex-col items-center gap-6 w-full max-w-sm"
         initial={{ opacity: 0, y: 20 }}

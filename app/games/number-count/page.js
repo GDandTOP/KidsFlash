@@ -17,7 +17,7 @@ const ROUND_TOTAL = 5
 
 function DifficultySelect ({ onSelect }) {
   return (
-    <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-24 pb-8">
+    <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-28 pb-8">
       <motion.div
         className="flex flex-col items-center gap-5 w-full max-w-sm"
         initial={{ opacity: 0, y: 20 }}
@@ -186,7 +186,7 @@ export default function NumberCountPage () {
     <div className="relative min-h-screen bg-gradient-to-b from-violet-50 via-purple-50 to-indigo-50 overflow-hidden">
       <GameHeader gameIcon="🔢" gameName="숫자세기" stars={totalStars} />
 
-      <div className="pt-24 pb-8 px-4 flex flex-col items-center min-h-screen">
+      <div className="pt-28 pb-8 px-4 flex flex-col items-center min-h-screen">
         {/* 라운드 + 질문 */}
         <motion.div
           className="text-center mb-4"

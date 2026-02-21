@@ -58,7 +58,7 @@ export default function ColorPlayPage () {
     <div className="min-h-screen bg-gradient-to-b from-amber-50 via-yellow-50 to-orange-50">
       <GameHeader gameIcon="🎨" gameName="색칠놀이" stars={totalStars} />
 
-      <div className="pt-24 pb-36 px-4 flex flex-col items-center min-h-screen">
+      <div className="pt-28 pb-36 px-4 flex flex-col items-center min-h-screen">
         {/* 도안 이름 */}
         <motion.div
           className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-2 rounded-full shadow-kids border-2 border-white/60 mb-4"
